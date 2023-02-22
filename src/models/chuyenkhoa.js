@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Chuyenkhoa.init({
-    
+    name: DataTypes.STRING,
     description: DataTypes.TEXT,
     image: DataTypes.STRING,
     

@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Phongkham.init({
+
     
-    
+    name: DataTypes.STRING,
     address: DataTypes.STRING,
     description : DataTypes.TEXT,
     image : DataTypes.STRING
