@@ -1,3 +1,4 @@
+import { request, response } from 'express';
 import db from '../models/index';
 import CRUDservices from '../services/CRUDservices';
 let getHomepage = async(req,res)=>{
@@ -36,6 +37,44 @@ let postCURD = async(req,res)=> {
         dataTable : data
     })
  }
+ let getEditCURD = async(req,res)=>{
+    let userId = req.query.id;
+
+    if(userId){
+        let userData =  await CRUDservices.getUserInfoById(userId);
+        
+    
+       return res.render('curdedit.ejs',{
+            user: userData
+       })
+
+    }
+    else{
+        return res.send('hello edit')
+
+    }
+ }
+ let PUTCRUD =  async (req,res) =>  {
+    let data = req.body;
+   let allUsers = await CRUDservices.updateUserData(data);
+   return res.render('displaycrud.ejs',{
+    dataTable: allUsers
+   })
+
+   
+
+ }
+ let deleteCRUD = async(req,res) =>{
+    let id = req.query.id;
+    if(id){
+
+        await CRUDservices.deleteUserById(id);
+        return res.send('Da xoa nguoi dung thanh cong ')
+    }else{
+        return res.send('Vui long thu lai')
+    }
+    
+ }
 module.exports={
     getHomepage : getHomepage,
     getAboutPage : getAboutPage,
@@ -43,4 +82,7 @@ module.exports={
 
     postCURD: postCURD, 
     displayGetCURD : displayGetCURD,
+    getEditCURD : getEditCURD,
+    PUTCRUD : PUTCRUD,
+    deleteCRUD : deleteCRUD
 }

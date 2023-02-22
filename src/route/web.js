@@ -10,6 +10,9 @@ let initWebRouter = (app) =>{
     router.get('/crudd',homecontroller.getCrud);
     router.post('/post-curd',homecontroller.postCURD);
     router.get('/get-crud' ,homecontroller.displayGetCURD);
+    router.get('/edit-crud',homecontroller.getEditCURD);
+    router.post('/put-curd',homecontroller.PUTCRUD);
+    router.get('/delete-crud',homecontroller.deleteCRUD)
  
 
     return app.use("/",router);
